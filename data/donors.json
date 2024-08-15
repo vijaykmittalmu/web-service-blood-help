@@ -1,0 +1,254 @@
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "location": {
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "latitude": 19.076,
+      "longitude": 72.8777
+    },
+    "blood_group": "A+",
+    "gender": "Male",
+    "profile_image": "https://example.com/profiles/john_doe.jpg",
+    "description": "Regular blood donor. Available on weekends."
+  },
+  {
+    "id": 2,
+    "name": "Jane Smith",
+    "location": {
+      "city": "Delhi",
+      "state": "Delhi",
+      "latitude": 28.7041,
+      "longitude": 77.1025
+    },
+    "blood_group": "O+",
+    "gender": "Female",
+    "profile_image": "https://example.com/profiles/jane_smith.jpg",
+    "description": "First-time donor. Excited to help others."
+  },
+  {
+    "id": 3,
+    "name": "Amit Kumar",
+    "location": {
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "latitude": 12.9716,
+      "longitude": 77.5946
+    },
+    "blood_group": "B+",
+    "gender": "Male",
+    "profile_image": "https://example.com/profiles/amit_kumar.jpg",
+    "description": "Experienced donor. Can donate every three months."
+  },
+  {
+    "id": 4,
+    "name": "Priya Singh",
+    "location": {
+      "city": "Chennai",
+      "state": "Tamil Nadu",
+      "latitude": 13.0827,
+      "longitude": 80.2707
+    },
+    "blood_group": "AB+",
+    "gender": "Female",
+    "profile_image": "https://example.com/profiles/priya_singh.jpg",
+    "description": "Enthusiastic donor. Available on weekdays."
+  },
+  {
+    "id": 5,
+    "name": "Ravi Sharma",
+    "location": {
+      "city": "Kolkata",
+      "state": "West Bengal",
+      "latitude": 22.5726,
+      "longitude": 88.3639
+    },
+    "blood_group": "O-",
+    "gender": "Male",
+    "profile_image": "https://example.com/profiles/ravi_sharma.jpg",
+    "description": "O- donor. Available for emergency donations."
+  },
+  {
+    "id": 6,
+    "name": "Sanya Gupta",
+    "location": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "latitude": 17.385,
+      "longitude": 78.4867
+    },
+    "blood_group": "A-",
+    "gender": "Female",
+    "profile_image": "https://example.com/profiles/sanya_gupta.jpg",
+    "description": "Donates regularly. Prefers evening donations."
+  },
+  {
+    "id": 7,
+    "name": "Vikram Patel",
+    "location": {
+      "city": "Ahmedabad",
+      "state": "Gujarat",
+      "latitude": 23.0225,
+      "longitude": 72.5714
+    },
+    "blood_group": "B-",
+    "gender": "Male",
+    "profile_image": "https://example.com/profiles/vikram_patel.jpg",
+    "description": "Experienced donor. Available for urgent needs."
+  },
+  {
+    "id": 8,
+    "name": "Anjali Mehta",
+    "location": {
+      "city": "Pune",
+      "state": "Maharashtra",
+      "latitude": 18.5204,
+      "longitude": 73.8567
+    },
+    "blood_group": "AB-",
+    "gender": "Female",
+    "profile_image": "https://example.com/profiles/anjali_mehta.jpg",
+    "description": "First-time donor. Willing to donate anytime."
+  },
+  {
+    "id": 9,
+    "name": "Rajesh Desai",
+    "location": {
+      "city": "Surat",
+      "state": "Gujarat",
+      "latitude": 21.1702,
+      "longitude": 72.8311
+    },
+    "blood_group": "A+",
+    "gender": "Male",
+    "profile_image": "https://example.com/profiles/rajesh_desai.jpg",
+    "description": "Regular donor. Available during the day."
+  },
+  {
+    "id": 10,
+    "name": "Sneha Verma",
+    "location": {
+      "city": "Jaipur",
+      "state": "Rajasthan",
+      "latitude": 26.9124,
+      "longitude": 75.7873
+    },
+    "blood_group": "O+",
+    "gender": "Female",
+    "profile_image": "https://example.com/profiles/sneha_verma.jpg",
+    "description": "Donates occasionally. Prefers weekend donations."
+  },
+  {
+    "id": 11,
+    "name": "Manish Tiwari",
+    "location": {
+      "city": "Lucknow",
+      "state": "Uttar Pradesh",
+      "latitude": 26.8467,
+      "longitude": 80.9462
+    },
+    "blood_group": "B+",
+    "gender": "Male",
+    "profile_image": "https://example.com/profiles/manish_tiwari.jpg",
+    "description": "Regular donor. Available on call."
+  },
+  {
+    "id": 12,
+    "name": "Pooja Reddy",
+    "location": {
+      "city": "Visakhapatnam",
+      "state": "Andhra Pradesh",
+      "latitude": 17.6868,
+      "longitude": 83.2185
+    },
+    "blood_group": "AB+",
+    "gender": "Female",
+    "profile_image": "https://example.com/profiles/pooja_reddy.jpg",
+    "description": "Available for donations during the day."
+  },
+  {
+    "id": 13,
+    "name": "Aakash Singh",
+    "location": {
+      "city": "Bhopal",
+      "state": "Madhya Pradesh",
+      "latitude": 23.2599,
+      "longitude": 77.4126
+    },
+    "blood_group": "O-",
+    "gender": "Male",
+    "profile_image": "https://example.com/profiles/aakash_singh.jpg",
+    "description": "Emergency donor. Available anytime."
+  },
+  {
+    "id": 14,
+    "name": "Nidhi Kapoor",
+    "location": {
+      "city": "Chandigarh",
+      "state": "Chandigarh",
+      "latitude": 30.7333,
+      "longitude": 76.7794
+    },
+    "blood_group": "A-",
+    "gender": "Female",
+    "profile_image": "https://example.com/profiles/nidhi_kapoor.jpg",
+    "description": "Willing to donate on short notice."
+  },
+  {
+    "id": 15,
+    "name": "Arjun Nair",
+    "location": {
+      "city": "Thiruvananthapuram",
+      "state": "Kerala",
+      "latitude": 8.5241,
+      "longitude": 76.9366
+    },
+    "blood_group": "B-",
+    "gender": "Male",
+    "profile_image": "https://example.com/profiles/arjun_nair.jpg",
+    "description": "Available for regular donations."
+  },
+  {
+    "id": 16,
+    "name": "Divya Singh",
+    "location": {
+      "city": "Kanpur",
+      "state": "Uttar Pradesh",
+      "latitude": 26.4499,
+      "longitude": 80.3319
+    },
+    "blood_group": "AB-",
+    "gender": "Female",
+    "profile_image": "https://example.com/profiles/divya_singh.jpg",
+    "description": "New donor. Available on weekends."
+  },
+  {
+    "id": 17,
+    "name": "Anil Yadav",
+    "location": {
+      "city": "Patna",
+      "state": "Bihar",
+      "latitude": 25.5941,
+      "longitude": 85.1376
+    },
+    "blood_group": "A+",
+    "gender": "Male",
+    "profile_image": "https://example.com/profiles/anil_yadav.jpg",
+    "description": "Available for emergency donations."
+  },
+  {
+    "id": 18,
+    "name": "Shreya Agarwal",
+    "location": {
+      "city": "Indore",
+      "state": "Madhya Pradesh",
+      "latitude": 22.7196,
+      "longitude": 75.8577
+    },
+    "blood_group": "O+",
+    "gender": "Female",
+    "profile_image": "https://example.com/profiles/shreya_agarwal.jpg",
+    "description": "Regular donor. Available during office hours."
+  }
+]
