@@ -1,13 +1,34 @@
+const crypto = require("crypto");
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const { emailRegex, mobileNumberRegex, passwordRegex } = require("../config");
 
-const donorSchema = new Schema(
+const locationSchema = new Schema({
+  city: {
+    type: String,
+    required: [true, "The city field is required in location."],
+    trim: true,
+    lowercase: true,
+  },
+  state: {
+    type: String,
+    required: [true, "The state field is required in location."],
+    trim: true,
+    lowercase: true,
+  },
+  lat: Number,
+  lng: Number,
+});
+
+const userSchema = new Schema(
   {
     name: {
       type: String,
       required: [true, "The name field is required."],
+      trim: true,
+      lowercase: true,
     },
     blood_group: {
       type: String,
@@ -23,6 +44,13 @@ const donorSchema = new Schema(
         message: (props) => `${props.value} is not a valid email address.`,
       },
       required: [true, "The email field is required."],
+      trim: true,
+      lowercase: true,
+    },
+    role: {
+      type: String,
+      enum: ["user", "admin"],
+      default: "user",
     },
     password: {
       type: String,
@@ -33,6 +61,11 @@ const donorSchema = new Schema(
         message: `Password must be at least 8 and at most 16 characters long, and must contain at least one uppercase letter, one lowercase letter, one number, and one special character`,
       },
       required: [false, "The password field is required."],
+      trim: true,
+    },
+    location: {
+      type: locationSchema,
+      required: [true, "Location details is required."],
     },
     mobile_number: {
       type: Number,
@@ -43,6 +76,7 @@ const donorSchema = new Schema(
         message: (props) => `${props.value} is not a valid mobile number.`,
       },
       required: [true, "The mobile field is required."],
+      unique: true,
     },
     gender: {
       type: String,
@@ -55,26 +89,51 @@ const donorSchema = new Schema(
     description: {
       type: String,
       required: [true, "The description field is required."],
+      trim: true,
     },
+    passwordResetToken: String,
+    passwordTokenExpires: Date,
   },
-  { versionKey: false }
+  {
+    versionKey: false,
+    timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
+  }
 );
 
 // pre middleware function
-donorSchema.pre("save", async function (next) {
+userSchema.pre("save", async function (next) {
   const salt = await bcrypt.genSalt(10);
   const hashPassword = await bcrypt.hash(this.password, salt);
   this.password = hashPassword;
-  console.log(hashPassword);
   next();
 });
 
-donorSchema.methods.passwordCompareHandler = async function (
+// hash password generate handler
+userSchema.methods.passwordCompareHandler = async function (
   password,
   hashPassword
 ) {
   return await bcrypt.compare(password, hashPassword);
 };
 
-const Donor = model("Donor", donorSchema);
-module.exports = Donor;
+// jwt token generate handler
+userSchema.methods.generateJwtToen = async function (userId) {
+  return await jwt.sign({ id: userId }, process.env.JWT_SECRET_KEY, {
+    expiresIn: process.env.JWT_EXPIRES_IN,
+  });
+};
+
+// random token generate for forgot password
+userSchema.methods.randomTokenGenerate = async function () {
+  const randomToken = crypto.randomBytes(32).toString("hex");
+  this.passwordResetToken = crypto
+    .createHash("sha256")
+    .update(randomToken)
+    .digest("hex");
+  this.passwordTokenExpires = Date.now() + 10 * 60 * 1000;
+
+  return randomToken;
+};
+
+const User = model("User", userSchema);
+module.exports = User;

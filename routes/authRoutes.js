@@ -1,12 +1,12 @@
 const express = require("express");
 const {
-  createDonorHandler,
-  loginDonorHandler,
+  createUserHandler,
+  loginUserHandler,
 } = require("../controllers/authController");
 
 const router = express.Router();
 
-router.post("/create-donor", createDonorHandler);
-router.post("/login", loginDonorHandler);
+router.post("/create-donor", createUserHandler);
+router.post("/login", loginUserHandler);
 
 module.exports = router;
