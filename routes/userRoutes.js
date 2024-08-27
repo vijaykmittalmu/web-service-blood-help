@@ -3,14 +3,14 @@ const router = express.Router();
 const {
   allUsersHandler,
   singleUserHandler,
-  protectRoutes,
-  permissionRestricted,
   deleteUserHandler,
-  forgotPasswordHandler,
-  resetPassword,
   updatePasswordHandler,
   updateUserInfoHandler,
 } = require("../controllers/userController");
+const {
+  protectRoutes,
+  permissionRestricted,
+} = require("../middleware/authMiddleware");
 
 //router.param("id", checkExistingUser);
 router.get("/", protectRoutes, allUsersHandler);

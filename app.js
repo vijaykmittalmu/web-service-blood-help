@@ -9,6 +9,8 @@ const xss = require("xss-clean");
 const express = require("express");
 const userRoutes = require("./routes/userRoutes");
 const authRoutes = require("./routes/authRoutes");
+const errorController = require("./controllers/errorController");
+const AppError = require("./utils/appError");
 const app = express();
 
 // middlewares
@@ -42,5 +44,12 @@ app.use("/api", limiter);
 // routes
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/auth", authRoutes);
+
+// error handler
+app.all("*", (req, res, next) => {
+  next(new AppError(`can not find ${req.originalUrl} on this server`, 404));
+});
+
+app.use(errorController);
 
 module.exports = app;

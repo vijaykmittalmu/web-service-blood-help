@@ -2,6 +2,7 @@ const crypto = require("crypto");
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const validator = require("validator");
 
 const { emailRegex, mobileNumberRegex, passwordRegex } = require("../config");
 
@@ -37,15 +38,11 @@ const userSchema = new Schema(
     },
     email: {
       type: String,
-      validate: {
-        validator: function (v) {
-          return emailRegex.test(v);
-        },
-        message: (props) => `${props.value} is not a valid email address.`,
-      },
+      validate: [validator.isEmail, "Please enter valid email address."],
       required: [true, "The email field is required."],
       trim: true,
       lowercase: true,
+      unique: true,
     },
     role: {
       type: String,
