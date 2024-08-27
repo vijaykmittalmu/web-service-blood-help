@@ -5,3 +5,14 @@ exports.sendResponse = (res, status, message, data = {}) => {
     response: data,
   });
 };
+
+exports.filterObject = (objs, ...allowFields) => {
+  const updatedObject = {};
+  Object.keys(objs).forEach((obj) => {
+    if (allowFields.includes(obj)) {
+      updatedObject[obj] = objs[obj];
+    }
+  });
+
+  return updatedObject;
+};
