@@ -29,12 +29,15 @@ exports.allUsersHandler = catchAsync(async (req, res, next) => {
 
 // get single user
 exports.singleUserHandler = catchAsync(async (req, res, next) => {
-  const user = await User.findById(req.params.id).select("-password");
+  const user = await User.findById(req.params.id)
+    .select("-password")
+    .populate("reviews");
   if (!user) {
     return next(new AppError("User does not exist", 400));
   }
   console.log(user);
   sendResponse(res, 200, "success", user);
+  next();
 });
 
 // delete user
@@ -44,6 +47,7 @@ exports.deleteUserHandler = catchAsync(async (req, res, next) => {
     return next(new AppError("User does not exist", 400));
   }
   sendResponse(res, 200, "User has been removed successfully.");
+  next();
 });
 
 exports.updatePasswordHandler = catchAsync(async (req, res, next) => {

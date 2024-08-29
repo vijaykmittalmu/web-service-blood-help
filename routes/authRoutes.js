@@ -8,7 +8,7 @@ const {
 
 const router = express.Router();
 
-router.post("/create-donor", createUserHandler);
+router.post("/create-user", createUserHandler);
 router.post("/login", loginUserHandler);
 router.post("/forgot-password", forgotPasswordHandler);
 router.patch("/reset-password/:token", resetPasswordHandler);

@@ -12,11 +12,23 @@ const {
   permissionRestricted,
 } = require("../middleware/authMiddleware");
 
-//router.param("id", checkExistingUser);
+const {
+  createReviewHandler,
+  getAllReviewsHandler,
+} = require("../controllers/reviewController");
+
+router
+  .route("/:id")
+  .get(protectRoutes, singleUserHandler)
+  .delete(protectRoutes, permissionRestricted);
+
 router.get("/", protectRoutes, allUsersHandler);
-router.get("/:id", protectRoutes, singleUserHandler);
-router.delete("/:id", protectRoutes, permissionRestricted, deleteUserHandler);
 router.patch("/update-password", protectRoutes, updatePasswordHandler);
 router.patch("/update-userinfo", protectRoutes, updateUserInfoHandler);
+
+router
+  .route("/:userId/reviews")
+  .post(protectRoutes, createReviewHandler)
+  .get(protectRoutes, getAllReviewsHandler);
 
 module.exports = router;

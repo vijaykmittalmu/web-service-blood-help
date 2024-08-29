@@ -6,22 +6,15 @@ const validator = require("validator");
 
 const { emailRegex, mobileNumberRegex, passwordRegex } = require("../config");
 
-const locationSchema = new Schema({
-  city: {
-    type: String,
-    required: [true, "The city field is required in location."],
-    trim: true,
-    lowercase: true,
-  },
-  state: {
-    type: String,
-    required: [true, "The state field is required in location."],
-    trim: true,
-    lowercase: true,
-  },
-  lat: Number,
-  lng: Number,
-});
+// const locationSchema = new Schema({
+//   type: {
+//     type: String,
+//     default: "Point",
+//     enum: ["Point"],
+//   },
+//   coordintes: [Number],
+//   address: String,
+// });
 
 const userSchema = new Schema(
   {
@@ -61,8 +54,13 @@ const userSchema = new Schema(
       trim: true,
     },
     location: {
-      type: locationSchema,
-      required: [true, "Location details is required."],
+      type: {
+        type: String,
+        default: "Point",
+        enum: ["Point"],
+      },
+      coordinates: [Number],
+      address: String,
     },
     mobile_number: {
       type: Number,
@@ -94,8 +92,16 @@ const userSchema = new Schema(
   {
     versionKey: false,
     timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
   }
 );
+
+userSchema.virtual("reviews", {
+  ref: "Review",
+  foreignField: "user",
+  localField: "_id",
+});
 
 // pre middleware function
 userSchema.pre("save", async function (next) {
