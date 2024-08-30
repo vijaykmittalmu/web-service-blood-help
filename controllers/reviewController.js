@@ -1,9 +1,12 @@
 const Review = require("../models/reviewModel");
 const catchAsync = require("../utils/catchAsync");
+const factory = require("./factoryHandler");
 
 // get all reviews for selected users
 exports.getAllReviewsHandler = catchAsync(async (req, res, next) => {
-  const reviews = await Review.find({ user: req.params.userId });
+  let filter = {};
+  if (req.params.userId) filter = { user: req.params.userId };
+  const reviews = await Review.find(filter);
   res.status(200).json({
     status: 200,
     message: "success",
@@ -24,3 +27,6 @@ exports.createReviewHandler = catchAsync(async (req, res) => {
     review,
   });
 });
+
+// delete user
+exports.deleteReviewHandler = factory.deleteOne(Review);

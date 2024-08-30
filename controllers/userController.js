@@ -4,6 +4,8 @@ const { validBloodGroups } = require("../utils/constant");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
 
+const factory = require("./factoryHandler");
+
 // get all user
 exports.allUsersHandler = catchAsync(async (req, res, next) => {
   const { blood_group, city, state } = req.query;
@@ -40,16 +42,6 @@ exports.singleUserHandler = catchAsync(async (req, res, next) => {
   next();
 });
 
-// delete user
-exports.deleteUserHandler = catchAsync(async (req, res, next) => {
-  const user = await User.findByIdAndDelete(req.params.id);
-  if (!user) {
-    return next(new AppError("User does not exist", 400));
-  }
-  sendResponse(res, 200, "User has been removed successfully.");
-  next();
-});
-
 exports.updatePasswordHandler = catchAsync(async (req, res, next) => {
   const user = await User.findById(req.user.id).select("+password");
   const isPasswordMatch = await user.passwordCompareHandler(
@@ -72,26 +64,17 @@ exports.updatePasswordHandler = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.updateUserInfoHandler = catchAsync(async (req, res, next) => {
-  const updatedFilterData = filterObject(
-    req.body,
-    "name",
-    "blood_group",
-    "email",
-    "mobile_number",
-    "gender",
-    "profile_image",
-    "description"
-  );
+// delete user
+exports.deleteUserHandler = factory.deleteOne(User);
 
-  const userInfo = await User.findByIdAndUpdate(
-    req.user.id,
-    updatedFilterData,
-    {
-      new: true,
-      runValidators: true,
-    }
-  );
-
-  sendResponse(res, 200, "User information update successfully.", userInfo);
-});
+// update login user information
+exports.updateUserInfoHandler = factory.updateOne(
+  User,
+  "name",
+  "blood_group",
+  "email",
+  "mobile_number",
+  "gender",
+  "profile_image",
+  "description"
+);

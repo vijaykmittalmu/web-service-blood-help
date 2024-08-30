@@ -17,6 +17,7 @@ const errorController = require("./controllers/errorController");
 
 // utils
 const AppError = require("./utils/appError");
+const { protectRoutes } = require("./middleware/authMiddleware");
 const app = express();
 
 // middlewares
@@ -49,8 +50,8 @@ app.use("/api", limiter);
 
 // routes
 app.use("/api/v1/users", userRoutes);
-app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/reviews", reviewRoutes);
+app.use("/api/v1/auth", protectRoutes, authRoutes);
+app.use("/api/v1/reviews", protectRoutes, reviewRoutes);
 
 // error handler
 app.all("*", (req, res, next) => {

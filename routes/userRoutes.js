@@ -7,10 +7,7 @@ const {
   updatePasswordHandler,
   updateUserInfoHandler,
 } = require("../controllers/userController");
-const {
-  protectRoutes,
-  permissionRestricted,
-} = require("../middleware/authMiddleware");
+const { permissionRestricted } = require("../middleware/authMiddleware");
 
 const {
   createReviewHandler,
@@ -19,16 +16,16 @@ const {
 
 router
   .route("/:id")
-  .get(protectRoutes, singleUserHandler)
-  .delete(protectRoutes, permissionRestricted);
+  .get(singleUserHandler)
+  .delete(permissionRestricted, deleteUserHandler);
 
-router.get("/", protectRoutes, allUsersHandler);
-router.patch("/update-password", protectRoutes, updatePasswordHandler);
-router.patch("/update-userinfo", protectRoutes, updateUserInfoHandler);
+router.get("/", allUsersHandler);
+router.patch("/update-password", updatePasswordHandler);
+router.patch("/update-userinfo", updateUserInfoHandler);
 
 router
   .route("/:userId/reviews")
-  .post(protectRoutes, createReviewHandler)
-  .get(protectRoutes, getAllReviewsHandler);
+  .post(createReviewHandler)
+  .get(getAllReviewsHandler);
 
 module.exports = router;

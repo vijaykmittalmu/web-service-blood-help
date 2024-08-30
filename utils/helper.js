@@ -6,7 +6,8 @@ exports.sendResponse = (res, status, message, data = {}) => {
   });
 };
 
-exports.filterObject = (objs, ...allowFields) => {
+exports.filterObject = (objs, allowFields) => {
+  console.log(allowFields);
   const updatedObject = {};
   Object.keys(objs).forEach((obj) => {
     if (allowFields.includes(obj)) {
